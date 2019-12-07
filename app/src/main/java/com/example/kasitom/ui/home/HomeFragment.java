@@ -24,22 +24,31 @@ import com.example.kasitom.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeFragment extends Fragment {
-    private HomeViewModel homeViewModel;
+    private View view;
+    private CardView cv_btnAntonim, cv_btnSinonim;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        CardView cardView = view.findViewById(R.id.btn_antonim);
-        cardView.setOnClickListener(new View.OnClickListener() {
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        initView();
+
+        cv_btnAntonim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Berhasil", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Antonim", Toast.LENGTH_LONG).show();
             }
         });
-
-
+        cv_btnSinonim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Sinonim", Toast.LENGTH_LONG).show();
+            }
+        });
         return view;
+    }
+
+    private void initView() {
+        cv_btnAntonim = view.findViewById(R.id.btn_antonim);
+        cv_btnSinonim = view.findViewById(R.id.btn_sinonim);
     }
 }
