@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -21,6 +22,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.kasitom.R;
+import com.example.kasitom.ui.Tentang.TentangFragment;
+import com.example.kasitom.ui.antonim.AntonimFragment;
+import com.example.kasitom.ui.sinonim.SinonimFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeFragment extends Fragment {
@@ -35,12 +39,28 @@ public class HomeFragment extends Fragment {
         cv_btnAntonim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AntonimFragment antonimFragment = new AntonimFragment();
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, antonimFragment)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+
                 Toast.makeText(getContext(), "Antonim", Toast.LENGTH_LONG).show();
             }
         });
         cv_btnSinonim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SinonimFragment sinonimFragment = new SinonimFragment();
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment, sinonimFragment)
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+
                 Toast.makeText(getContext(), "Sinonim", Toast.LENGTH_LONG).show();
             }
         });
