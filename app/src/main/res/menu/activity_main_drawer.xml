@@ -3,9 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/nav_gallery"
-        android:icon="@drawable/ic_person_white_24dp"
-        android:title="@string/menu_tentang" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_chatGlobal"
+            android:icon="@drawable/ic_chat_grey_24dp"
+            android:title="@string/menu_chatGlobal"/>
+        <item
+            android:id="@+id/nav_tentang"
+            android:icon="@drawable/ic_person_grey_24dp"
+            android:title="@string/menu_tentang" />
+
+
+        <!--Belum digunakan-->
+        <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_tools" />
+    </group>
 
 </menu>

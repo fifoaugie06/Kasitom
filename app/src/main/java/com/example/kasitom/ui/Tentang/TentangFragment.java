@@ -20,16 +20,8 @@ public class TentangFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        tentangViewModel =
-                ViewModelProviders.of(this).get(TentangViewModel.class);
         View root = inflater.inflate(R.layout.fragment_tentang, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        tentangViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

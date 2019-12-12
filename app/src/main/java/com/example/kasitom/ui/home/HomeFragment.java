@@ -14,15 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.kasitom.R;
-import com.example.kasitom.ui.Tentang.TentangFragment;
 import com.example.kasitom.ui.antonim.AntonimFragment;
 import com.example.kasitom.ui.sinonim.SinonimFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -34,7 +27,15 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        initView();
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        cv_btnAntonim = view.findViewById(R.id.btn_antonim);
+        cv_btnSinonim = view.findViewById(R.id.btn_sinonim);
 
         cv_btnAntonim.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +45,6 @@ public class HomeFragment extends Fragment {
                 getFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment, antonimFragment)
                         .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
 
                 Toast.makeText(getContext(), "Antonim", Toast.LENGTH_LONG).show();
@@ -64,11 +64,6 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Sinonim", Toast.LENGTH_LONG).show();
             }
         });
-        return view;
     }
 
-    private void initView() {
-        cv_btnAntonim = view.findViewById(R.id.btn_antonim);
-        cv_btnSinonim = view.findViewById(R.id.btn_sinonim);
-    }
 }
