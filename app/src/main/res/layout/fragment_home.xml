@@ -8,15 +8,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bg_atas"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="190dp"
         android:background="@drawable/bg_home_atas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:src="@drawable/logo_putih"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,93 +24,92 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="8dp"
+        android:id="@+id/home_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_constraintEnd_toEndOf="@+id/bg_atas"
+        app:layout_constraintStart_toStartOf="@+id/bg_atas"
+        app:layout_constraintTop_toBottomOf="@id/bg_atas">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_antonim"
-        android:layout_width="150dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="72dp"
-        app:cardCornerRadius="@dimen/activity_vertical_margin"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bg_atas">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_antonim"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            app:cardCornerRadius="@dimen/activity_vertical_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_antonim" />
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_antonim" />
+        </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_antonim"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="@dimen/activity_vertical_margin"
-        app:layout_constraintEnd_toEndOf="@+id/card_antonim"
-        app:layout_constraintStart_toStartOf="@+id/card_antonim"
-        app:layout_constraintTop_toBottomOf="@+id/card_antonim">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_antonim"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/activity_vertical_margin"
+            app:layout_constraintEnd_toEndOf="@+id/card_antonim"
+            app:layout_constraintStart_toStartOf="@+id/card_antonim"
+            app:layout_constraintTop_toBottomOf="@+id/card_antonim">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/antonim"
-            android:textAlignment="center"
-            android:textColor="#3498DB"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/antonim"
+                android:textAlignment="center"
+                android:textColor="#3498DB"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
 
-    <!--......................BATAS.......................-->
+        <!--......................BATAS.......................-->
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_sinonim"
-        android:layout_width="150dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="@dimen/activity_vertical_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/bg_atas">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_sinonim"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            app:cardCornerRadius="@dimen/activity_vertical_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_sinonim" />
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_sinonim" />
+        </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btn_sinonim"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="@dimen/activity_vertical_margin"
-        app:layout_constraintEnd_toEndOf="@+id/card_sinonim"
-        app:layout_constraintStart_toStartOf="@+id/card_sinonim"
-        app:layout_constraintTop_toBottomOf="@+id/card_sinonim">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_sinonim"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/activity_vertical_margin"
+            app:layout_constraintEnd_toEndOf="@+id/card_sinonim"
+            app:layout_constraintStart_toStartOf="@+id/card_sinonim"
+            app:layout_constraintTop_toBottomOf="@+id/card_sinonim">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="@string/sinonim"
-            android:textAlignment="center"
-            android:textColor="#3498DB"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/sinonim"
+                android:textAlignment="center"
+                android:textColor="#3498DB"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

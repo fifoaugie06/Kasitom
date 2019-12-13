@@ -5,20 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_chatGlobal"
-            android:icon="@drawable/ic_chat_grey_24dp"
-            android:title="@string/menu_chatGlobal"/>
+            android:id="@+id/nav_ubahBahasa"
+            android:icon="@drawable/ic_settings_grey_24dp"
+            android:title="@string/menu_ubahBahasa"/>
         <item
             android:id="@+id/nav_tentang"
             android:icon="@drawable/ic_person_grey_24dp"
             android:title="@string/menu_tentang" />
-
-
-        <!--Belum digunakan-->
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
     </group>
+
+        <item android:title="Kasitom">
+            <menu>
+                <item
+                    android:id="@+id/nav_keluar"
+                    android:icon="@drawable/ic_exit_to_app_grey_24dp"
+                    android:title="@string/menu_logout" />
+
+            </menu>
+        </item>
+
 
 </menu>
