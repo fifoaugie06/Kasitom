@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "217273914297",
+    "firebase_url": "https://kasitom-ac182.firebaseio.com",
+    "project_id": "kasitom-ac182",
+    "storage_bucket": "kasitom-ac182.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217273914297:android:e0ec606657c8e7502b5c68",
+        "android_client_info": {
+          "package_name": "com.example.kasitom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217273914297-cosl4pun2qc58vd07j7l3qi8r4bhe7cu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kasitom",
+            "certificate_hash": "738c8fbfb211778e681b0f897672132a13a29537"
+          }
+        },
+        {
+          "client_id": "217273914297-tb1r7b9vuqcspo4osrfa9t4jtrc5a6g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3FhjwSgT9iCXwYWQGWLwtoJlge99vLcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217273914297-tb1r7b9vuqcspo4osrfa9t4jtrc5a6g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
