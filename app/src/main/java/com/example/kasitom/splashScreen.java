@@ -93,14 +93,13 @@ public class splashScreen extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(splashScreen.this);
         progressDialog.setTitle("Kasitom");
-        progressDialog.setMessage("Its Loading....");
+        progressDialog.setMessage("Memuat ....");
         progressDialog.show();
 
         Intent intent = new Intent(splashScreen.this, MainActivity.class);
         intent.putExtra(MainActivity.GOOGLE_ACCOUNT, acct);
         startActivity(intent);
         finish();
-        //showProgressDialog();
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)

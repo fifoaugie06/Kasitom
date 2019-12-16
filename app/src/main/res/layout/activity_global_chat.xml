@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context=".chatroom.GlobalChat">
+
+    <ScrollView
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/scrollview_chat"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toTopOf="@+id/inp_chat">
+
+        <TextView
+            android:id="@+id/tv_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/inp_chat"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_edittext_style"
+        android:elevation="3dp"
+        android:hint="@string/ketikdisini"
+        android:inputType="text"
+        android:maxLength="100"
+        android:maxLines="2"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_send"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/ic_btnsend_style"
+        android:paddingStart="2dp"
+        android:paddingBottom="3dp"
+        android:src="@drawable/ic_send_white_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/inp_chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/inp_chat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -17,8 +16,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import androidx.navigation.ui.AppBarConfiguration;
 
 
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -32,13 +29,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String GOOGLE_ACCOUNT = "google_account";
+    public static String namaAccount, nickAccount = null;
     private ImageView profileImage;
     private TextView profileId, profileEmail;
     GoogleSignInClient googleSignInClient;
@@ -77,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setDataOnView() {
         GoogleSignInAccount googleSignInAccount = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
+        namaAccount = googleSignInAccount.getGivenName();
 
         profileId.setText(googleSignInAccount.getDisplayName());
         Picasso.get()
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_ubahBahasa) {
             Toast.makeText(this, "Ubah Bahasa", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_tentang) {
-            Toast.makeText(this, "Tentang", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(MainActivity.this, TentangActivity.class));
         } else if (id == R.id.nav_keluar) {
             signOut();
         }
