@@ -53,17 +53,21 @@ public class GlobalChat extends AppCompatActivity {
         btn_SendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, Object> map = new HashMap<String, Object>();
-                temp_key = root.push().getKey();
-                root.updateChildren(map);
+                if (inp_msg.length() == 0) {
+                    inp_msg.setError("Tidak Boleh Kosong");
+                } else {
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    temp_key = root.push().getKey();
+                    root.updateChildren(map);
 
-                DatabaseReference message_root = root.child(temp_key);
-                Map<String, Object> map2 = new HashMap<String, Object>();
-                map2.put("name", user_name);
-                map2.put("msg", inp_msg.getText().toString());
+                    DatabaseReference message_root = root.child(temp_key);
+                    Map<String, Object> map2 = new HashMap<String, Object>();
+                    map2.put("name", user_name);
+                    map2.put("msg", inp_msg.getText().toString());
 
-                message_root.updateChildren(map2);
-                inp_msg.setText("");
+                    message_root.updateChildren(map2);
+                    inp_msg.setText("");
+                }
             }
         });
 

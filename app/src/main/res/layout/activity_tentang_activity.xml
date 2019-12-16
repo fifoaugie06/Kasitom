@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".TentangActivity">
 
+    <ImageView
+        android:id="@+id/logo_kasitom"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/logo_biru"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:justificationMode="inter_word"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem"
+        app:layout_constraintEnd_toEndOf="@id/logo_kasitom"
+        app:layout_constraintStart_toStartOf="@+id/logo_kasitom"
+        app:layout_constraintTop_toBottomOf="@+id/logo_kasitom" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
