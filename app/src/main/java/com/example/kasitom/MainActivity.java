@@ -8,6 +8,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_ubahBahasa) {
-            Toast.makeText(this, "Ubah Bahasa", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
         } else if (id == R.id.nav_tentang) {
             startActivity(new Intent(MainActivity.this, TentangActivity.class));
         } else if (id == R.id.nav_keluar) {

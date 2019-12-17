@@ -14,7 +14,7 @@ public class TentangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tentang_activity);
 
-        getSupportActionBar().setTitle("Tentang");
+        getSupportActionBar().setTitle(R.string.menu_tentang);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

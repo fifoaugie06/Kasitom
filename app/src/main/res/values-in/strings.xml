@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kasitom</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -8,7 +9,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Kasitom</string>
-    <string name="menu_tentang">About</string>
+    <string name="menu_tentang">Tentang</string>
     <string name="antonim">Antonim</string>
     <string name="sinonim">Sinonim</string>
     <string name="chatglobal">Global Chat</string>
@@ -16,11 +17,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_tools">Tools</string>
-    <string name="menu_ubahBahasa">Change Languange</string>
-    <string name="menu_logout">Log Out</string>
+    <string name="menu_ubahBahasa">Ubah Bahasa</string>
+    <string name="menu_logout">Keluar</string>
     <string name="soal">Latihan Soal</string>
-    <string name="ketikdisini">Type Here...</string>
+    <string name="ketikdisini">Ketik Disini...</string>
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-
 
 </resources>

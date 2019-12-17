@@ -57,9 +57,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), GlobalChat.class);
                 startActivity(intent);
-
-                Toast.makeText(getContext(), "Global Chat", Toast.LENGTH_LONG).show();
-
             }
         });
         cv_btnQuiz.setOnClickListener(new View.OnClickListener() {
