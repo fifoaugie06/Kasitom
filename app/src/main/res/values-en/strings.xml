@@ -17,7 +17,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_tools">Tools</string>
-    <string name="menu_ubahBahasa">Change Languange</string>
+    <string name="menu_ubahBahasa">ENG - IND</string>
     <string name="menu_logout">Log Out</string>
     <string name="soal">Exercise</string>
     <string name="ketikdisini">Type Here...</string>

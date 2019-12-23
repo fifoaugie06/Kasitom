@@ -1,6 +1,8 @@
 package com.example.kasitom;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.example.kasitom.ui.home.HomeFragment;
@@ -9,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -34,13 +37,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String GOOGLE_ACCOUNT = "google_account";
-    public static String namaAccount, nickAccount = null;
     private ImageView profileImage;
     private TextView profileId, profileEmail;
     GoogleSignInClient googleSignInClient;
-    GoogleSignInAccount googleSignInAccount;
     Fragment fragment = null;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -75,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setDataOnView() {
         GoogleSignInAccount googleSignInAccount = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
-        namaAccount = googleSignInAccount.getGivenName();
 
         profileId.setText(googleSignInAccount.getDisplayName());
         Picasso.get()
@@ -109,7 +111,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_ubahBahasa) {
-            startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
+            if (getResources().getString(R.string.menu_tentang).equals("About")) {
+                Locale myLocale = new Locale("in");
+                Resources res = getResources();
+                DisplayMetrics dm = res.getDisplayMetrics();
+                Configuration config = res.getConfiguration();
+                config.locale = myLocale;
+                res.updateConfiguration(config, dm);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            } else{
+                Locale myLocale = new Locale("en");
+                Resources res = getResources();
+                DisplayMetrics dm = res.getDisplayMetrics();
+                Configuration config = res.getConfiguration();
+                config.locale = myLocale;
+                res.updateConfiguration(config, dm);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+
         } else if (id == R.id.nav_tentang) {
             startActivity(new Intent(MainActivity.this, TentangActivity.class));
         } else if (id == R.id.nav_keluar) {
