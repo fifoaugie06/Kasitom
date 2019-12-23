@@ -73,6 +73,13 @@ public class splashScreen extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+            if (progressDialog != null && progressDialog.isShowing())
+                progressDialog.dismiss();
+            super.onDestroy();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
@@ -80,6 +87,8 @@ public class splashScreen extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+
+
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
