@@ -9,15 +9,17 @@ public class ChatMessage {
     private String messageText;
     private String messageUser;
     private String messageUserId;
+    private String messageUserPhotoUri;
 
     public  ChatMessage(){
 
     }
 
-    public ChatMessage(String messageText, String messageUser, String messageUserId) {
+    public ChatMessage(String messageText, String messageUser, String messageUserId, String messageUserPhotoUri) {
          this.messageText = messageText;
          this.messageUser = messageUser;
          this.messageUserId = messageUserId;
+         this.messageUserPhotoUri = messageUserPhotoUri;
     }
 
 
@@ -33,4 +35,7 @@ public class ChatMessage {
         return messageUser;
     }
 
+    public String getMessageUserPhotoUri() {
+        return messageUserPhotoUri;
+    }
 }

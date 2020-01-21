@@ -33,7 +33,7 @@
         android:elevation="3dp"
         android:hint="@string/ketikdisini"
         android:inputType="text"
-        android:maxLength="100"
+        android:maxLength="70"
         android:maxLines="2"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"

@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.net.URL;
 
+import static com.example.kasitom.MainActivity.GOOGLE_ACCOUNT;
+
 public class GlobalChat extends AppCompatActivity {
     private ImageButton btn_SendMsg;
     private EditText inp_msg;
@@ -46,13 +48,15 @@ public class GlobalChat extends AppCompatActivity {
             public void onClick(View view) {
                 if (inp_msg.length() == 0) {
                     inp_msg.setError("Tidak Boleh Kosong");
-                } else {
+                } else{
                     FirebaseDatabase.getInstance()
                             .getReference()
+                            .child("globalchat")
                             .push()
                             .setValue(new ChatMessage(inp_msg.getText().toString(),
                                     FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
-                                    FirebaseAuth.getInstance().getCurrentUser().getUid()
+                                    FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                                    FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString()
                             ));
                     inp_msg.setText("");
                 }
@@ -66,7 +70,7 @@ public class GlobalChat extends AppCompatActivity {
         Log.d("Main", "user id: " + loggedInUserName);
 
         adapter = new MessageAdapter(this, ChatMessage.class, R.layout.item_in_message,
-                FirebaseDatabase.getInstance().getReference());
+                FirebaseDatabase.getInstance().getReference().child("globalchat"));
         listView.setAdapter(adapter);
     }
 
