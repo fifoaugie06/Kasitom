@@ -21,6 +21,11 @@
     <string name="soal">Latihan Soal</string>
     <string name="ketikdisini">Type Here...</string>
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="OptionA">Option A</string>
+    <string name="OptionB">Option B</string>
+    <string name="OptionC">Option C</string>
+    <string name="OptionD">Option D</string>
+    <string name="fetchData">Mengambil data...</string>
 
 
 </resources>
