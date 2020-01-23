@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kasitom.R;
 import com.example.kasitom.chatroom.GlobalChat;
+import com.example.kasitom.quiz.QuizActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class HomeFragment extends Fragment {
@@ -62,7 +63,8 @@ public class HomeFragment extends Fragment {
         cv_btnQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Latihan Soal", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), QuizActivity.class);
+                startActivity(intent);
             }
         });
     }

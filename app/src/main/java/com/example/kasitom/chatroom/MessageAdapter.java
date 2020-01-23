@@ -8,6 +8,9 @@ import com.example.kasitom.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseReference;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class MessageAdapter extends FirebaseListAdapter<ChatMessage> {
     private GlobalChat activity;
     private ChatMessage chatMessage;
@@ -33,7 +36,6 @@ public class MessageAdapter extends FirebaseListAdapter<ChatMessage> {
 
 
         // Format the date before showing it
-        //messageTime.setText(DateFormat.format("HH:mm:ss", model.getMessageTime()));
     }
 
     @Override

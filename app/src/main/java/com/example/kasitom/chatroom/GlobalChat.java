@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.net.URL;
+import java.util.Date;
 
 import static com.example.kasitom.MainActivity.GOOGLE_ACCOUNT;
 
@@ -56,7 +57,8 @@ public class GlobalChat extends AppCompatActivity {
                             .setValue(new ChatMessage(inp_msg.getText().toString(),
                                     FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
                                     FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                    FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString()
+                                    FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString(),
+                                    new Date().getTime()
                             ));
                     inp_msg.setText("");
                 }

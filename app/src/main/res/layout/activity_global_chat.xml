@@ -32,9 +32,10 @@
         android:background="@drawable/ic_edittext_style"
         android:elevation="3dp"
         android:hint="@string/ketikdisini"
-        android:inputType="text"
         android:maxLength="70"
         android:maxLines="2"
+        android:inputType="text"
+
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
