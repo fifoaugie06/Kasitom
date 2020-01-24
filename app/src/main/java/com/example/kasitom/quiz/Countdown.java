@@ -1,6 +1,9 @@
 package com.example.kasitom.quiz;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,10 +22,10 @@ public class Countdown {
         pb_countDown.setSecondaryProgress(endTime);
         pb_countDown.setProgress(0);
 
-        fn_countdown(i, pb_countDown,tv_timer);
+        fn_countdown(i, pb_countDown, tv_timer);
     }
 
-    private void fn_countdown(int i, final ProgressBar pb_countDown, final TextView tv_timer) {
+    private void fn_countdown(final int i, final ProgressBar pb_countDown, final TextView tv_timer) {
         progress = 1;
         endTime = i;
 
@@ -34,24 +37,21 @@ public class Countdown {
                 int seconds = (int) (millisUntilFinished / 1000) % 60;
                 int minutes = (int) ((millisUntilFinished / (1000 * 60)) % 60);
 
-                String newtime = minutes + ":" + seconds;
 
-                if (newtime.equals("0:0:0")) {
-                    tv_timer.setText("00:00");
-                } else if ((String.valueOf(minutes).length() == 1) && (String.valueOf(seconds).length() == 1)) {
-                    tv_timer.setText(minutes + ":0" + seconds);
-                } else if ((String.valueOf(minutes).length() == 1)) {
-                    tv_timer.setText(minutes + ":" + seconds);
-                } else if ((String.valueOf(seconds).length() == 1)) {
-                    tv_timer.setText(minutes + ":0" + seconds);
-                } else if ((String.valueOf(seconds).length() == 1)) {
-                    tv_timer.setText(minutes + ":0" + seconds);
-                } else if (String.valueOf(minutes).length() == 1) {
-                    tv_timer.setText(minutes + ":" + seconds);
-                } else if (String.valueOf(seconds).length() == 1) {
-                    tv_timer.setText(minutes + ":0" + seconds);
+                if (String.valueOf(seconds).length() == 1) {
+                    if (String.valueOf(minutes).charAt(0) == '0') {
+                        tv_timer.setText(String.valueOf(seconds));
+                        tv_timer.setTextColor(Color.parseColor("#D81B60"));
+                        tv_timer.setTypeface(null, Typeface.BOLD);
+                        tv_timer.setTextSize(20);
+                        //Log.e("NEWTIME3", "" + seconds); // Show seconds only in Last 10 Seconds
+                    } else {
+                        tv_timer.setText(minutes + ":0" + seconds);
+                        //Log.e("NEWTIME", minutes + ":0" + seconds);
+                    }
                 } else {
                     tv_timer.setText(minutes + ":" + seconds);
+                    //Log.e("NEWTIME2", minutes + ":" + seconds);
                 }
             }
 

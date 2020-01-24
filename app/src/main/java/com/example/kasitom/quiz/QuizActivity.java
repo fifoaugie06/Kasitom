@@ -40,19 +40,15 @@ public class QuizActivity extends AppCompatActivity {
     private int computerCount, correct = 0;
     private long countQuestion = 0;
     private float nilai;
+    private Countdown countdown = new Countdown();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
         initView();
         countQuestionData(); //Count max data quiz Firebase
-        //reverseTimer(120, tv_time);
-        Countdown countdown = new Countdown();
-        countdown.Countdown(3600, pb_countDown, tv_timer);
-        //countdown.getTime();
 
         getSupportActionBar().hide();
     }
@@ -65,6 +61,7 @@ public class QuizActivity extends AppCompatActivity {
                 countQuestion = dataSnapshot.getChildrenCount();
 
                 updateQuestion(countQuestion); //Update quiz sampai max
+                countdown.Countdown((int) (countQuestion*5), pb_countDown, tv_timer); //Make countdownProgressBar
             }
 
             @Override
@@ -73,7 +70,6 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void updateQuestion(final long countQuestion) {
         computerCount++;
@@ -315,23 +311,5 @@ public class QuizActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void reverseTimer(int Seconds, final TextView tv) {
-
-        new CountDownTimer(Seconds * 1000 + 1000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                int seconds = (int) (millisUntilFinished / 1000);
-                int minutes = seconds / 60;
-                seconds = seconds % 60;
-                tv.setText(String.format("%02d", minutes) + ":" + String.format("%02d", seconds));
-            }
-
-            public void onFinish() {
-                tv.setText("Completed");
-                Toast.makeText(QuizActivity.this, "Waktuhabis", Toast.LENGTH_LONG).show();
-            }
-        }.start();
     }
 }
