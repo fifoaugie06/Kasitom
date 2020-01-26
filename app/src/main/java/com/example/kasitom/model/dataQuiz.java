@@ -1,7 +1,7 @@
 package com.example.kasitom.model;
 
 public class dataQuiz {
-    public String soal;
+    public String soal, key;
     public String optionA, optionB, optionC, optionD, jawaban;
 
     public dataQuiz(){
@@ -39,5 +39,13 @@ public class dataQuiz {
 
     public String getJawaban() {
         return jawaban;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
     }
 }
