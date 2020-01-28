@@ -74,9 +74,9 @@ public class splashScreen extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-            if (progressDialog != null && progressDialog.isShowing())
-                progressDialog.dismiss();
-            super.onDestroy();
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
+        super.onDestroy();
     }
 
     @Override
@@ -84,50 +84,48 @@ public class splashScreen extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-
-
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
-                updateUI(null);
-            }
+            handleSignInResult(task);
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-        progressDialog = new ProgressDialog(splashScreen.this);
-        progressDialog.setTitle("Kasitom");
-        progressDialog.setMessage("Memuat ....");
-        progressDialog.show();
+            progressDialog = new ProgressDialog(splashScreen.this);
+            progressDialog.setTitle("Kasitom");
+            progressDialog.setMessage("Memuat ....");
+            progressDialog.show();
 
-        Intent intent = new Intent(splashScreen.this, MainActivity.class);
-        intent.putExtra(MainActivity.GOOGLE_ACCOUNT, acct);
-        startActivity(intent);
-        finish();
+            Intent intent = new Intent(splashScreen.this, MainActivity.class);
+            startActivity(intent);
+            finish();
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateUI(null);
+            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+            mAuth.signInWithCredential(credential)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithCredential:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithCredential:failure", task.getException());
+                                updateUI(null);
+                            }
+                            //hideProgressDialog();
                         }
-                        //hideProgressDialog();
-                    }
-                });
+                    });
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
     }
 
     private void updateUI(FirebaseUser user) {

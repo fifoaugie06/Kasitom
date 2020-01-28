@@ -3,7 +3,6 @@ package com.example.kasitom.chatroom;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,18 +10,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kasitom.R;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.example.kasitom.model.dataMessage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.net.URL;
 import java.util.Date;
-
-import static com.example.kasitom.MainActivity.GOOGLE_ACCOUNT;
 
 public class GlobalChat extends AppCompatActivity {
     private ImageButton btn_SendMsg;
@@ -54,7 +48,7 @@ public class GlobalChat extends AppCompatActivity {
                             .getReference()
                             .child("globalchat")
                             .push()
-                            .setValue(new ChatMessage(inp_msg.getText().toString(),
+                            .setValue(new dataMessage(inp_msg.getText().toString(),
                                     FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
                                     FirebaseAuth.getInstance().getCurrentUser().getUid(),
                                     FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString(),
@@ -71,7 +65,7 @@ public class GlobalChat extends AppCompatActivity {
         loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("Main", "user id: " + loggedInUserName);
 
-        adapter = new MessageAdapter(this, ChatMessage.class, R.layout.item_in_message,
+        adapter = new MessageAdapter(this, dataMessage.class, R.layout.item_in_message,
                 FirebaseDatabase.getInstance().getReference().child("globalchat"));
         listView.setAdapter(adapter);
     }

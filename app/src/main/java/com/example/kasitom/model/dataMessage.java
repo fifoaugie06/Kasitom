@@ -1,22 +1,22 @@
-package com.example.kasitom.chatroom;
+package com.example.kasitom.model;
 
 import android.net.Uri;
 
 import java.net.URL;
 import java.util.Date;
 
-public class ChatMessage {
+public class dataMessage {
     private String messageText;
     private String messageUser;
     private String messageUserId;
     private String messageUserPhotoUri;
     private long messageUserTime;
 
-    public  ChatMessage(){
+    public dataMessage(){
 
     }
 
-    public ChatMessage(String messageText, String messageUser, String messageUserId, String messageUserPhotoUri, long messageUserTime) {
+    public dataMessage(String messageText, String messageUser, String messageUserId, String messageUserPhotoUri, long messageUserTime) {
          this.messageText = messageText;
          this.messageUser = messageUser;
          this.messageUserId = messageUserId;

@@ -40,10 +40,9 @@ import android.widget.Toast;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String GOOGLE_ACCOUNT = "google_account";
     private ImageView profileImage;
     private TextView profileId, profileEmail;
-    GoogleSignInClient googleSignInClient;
+    private GoogleSignInClient googleSignInClient;
     Fragment fragment = null;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -77,16 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setDataOnView() {
-        GoogleSignInAccount googleSignInAccount = getIntent().getParcelableExtra(GOOGLE_ACCOUNT);
-
-        profileId.setText(googleSignInAccount.getDisplayName());
-        Picasso.get()
-                .load(googleSignInAccount.getPhotoUrl())
-                .centerInside()
-                .resize(200, 200)
-                .into(profileImage);
-        profileEmail.setText(googleSignInAccount.getEmail());
-
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestId()
                 .requestProfile()
@@ -94,6 +83,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .build();
 
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (googleSignInAccount != null) {
+            profileId.setText(googleSignInAccount.getDisplayName());
+            Picasso.get()
+                    .load(googleSignInAccount.getPhotoUrl())
+                    .centerInside()
+                    .resize(200, 200)
+                    .into(profileImage);
+            profileEmail.setText(googleSignInAccount.getEmail());
+        }
     }
 
     @Override

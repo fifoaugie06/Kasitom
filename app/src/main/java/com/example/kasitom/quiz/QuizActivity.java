@@ -1,6 +1,7 @@
 package com.example.kasitom.quiz;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -20,6 +21,13 @@ import android.widget.Toast;
 
 import com.example.kasitom.R;
 import com.example.kasitom.model.dataQuiz;
+import com.example.kasitom.model.dataScoreBoard;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +51,9 @@ public class QuizActivity extends AppCompatActivity {
     private DatabaseReference database;
     private long countQuestion = 0;
     private float nilai;
+    private DecimalFormat decim = new DecimalFormat("###.##");
     private ArrayList<dataQuiz> daftarQuiz;
+    private GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -323,11 +333,79 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void isGameOver() {
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
         nilai = 100f / countQuestion;
         nilai = nilai * (float) correct;
-        DecimalFormat decim = new DecimalFormat("###.##");
 
-        Toast.makeText(QuizActivity.this, decim.format(nilai), Toast.LENGTH_LONG).show();
+        database = FirebaseDatabase.getInstance().getReference();
+        submitScoreBoard(new dataScoreBoard(googleSignInAccount.getDisplayName(), googleSignInAccount.getPhotoUrl().toString(),
+                String.valueOf(correct), decim.format(nilai)));
+
+        //Toast.makeText(QuizActivity.this, decim.format(nilai), Toast.LENGTH_LONG).show();
+    }
+
+    private void submitScoreBoard(final dataScoreBoard dataScoreBoard) {
+        database.child("scoreboard")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                // cek apakah child sudah dibuat atau belum
+                if (dataSnapshot.hasChild(dataScoreBoard.getNama())){
+                    database.child("scoreboard")
+                            .child(dataScoreBoard.getNama())
+                            .child("nilai").addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            // Cek apakah nilai yang baru didapat lebih besar dari nilai di database
+                            // jika iya replace nilai didatabase
+                            float nilaiBaru = Float.parseFloat(decim.format(nilai));
+                            float nilaiDataBase = Float.parseFloat(dataSnapshot.getValue().toString());
+
+                            if (nilaiBaru > nilaiDataBase) {
+                                updateNilaiBaru(new dataScoreBoard(dataScoreBoard.getNama(), dataScoreBoard.getPhotoURI(),
+                                        String.valueOf(correct), String.valueOf(nilaiBaru)));
+                            } else {
+                                Log.i("replacegagal", "hm");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }else {
+                    database.child("scoreboard")
+                            .child(dataScoreBoard.getNama())
+                            .setValue(dataScoreBoard)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                }
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void updateNilaiBaru(dataScoreBoard dataScoreBoard) {
+        database.child("scoreboard")
+                .child(dataScoreBoard.getNama())
+                .setValue(dataScoreBoard).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+            }
+        });
     }
 
 
