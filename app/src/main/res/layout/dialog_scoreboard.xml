@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ic_dialogscore_style">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logo_winner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_winner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_congrats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="Congrats!"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/logo_winner"
+            app:layout_constraintStart_toStartOf="@+id/logo_winner"
+            app:layout_constraintTop_toBottomOf="@+id/logo_winner" />
+
+        <TextView
+            android:id="@+id/tv_Score"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/tv_congrats"
+            app:layout_constraintStart_toStartOf="@+id/tv_congrats"
+            app:layout_constraintTop_toBottomOf="@id/tv_congrats"
+            tools:text="66.66 Score" />
+
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp"
+            android:id="@+id/tv_completeSucessfully"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quiz completed successfully"
+            app:layout_constraintEnd_toEndOf="@+id/tv_Score"
+            app:layout_constraintStart_toStartOf="@+id/tv_Score"
+            app:layout_constraintTop_toBottomOf="@id/tv_Score" />
+
+        <TextView
+            android:id="@+id/tv_attempt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_completeSucessfully"
+            app:layout_constraintStart_toStartOf="@+id/tv_completeSucessfully"
+            app:layout_constraintTop_toBottomOf="@id/tv_completeSucessfully"
+            tools:text="You attempt 10 questions and \nfrom that 5 answer is correct" />
+
+        <Button
+            android:elevation="2dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:id="@+id/btn_scoreBoard"
+            android:layout_marginTop="48dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Scoreboard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_attempt" />
+
+        <Button
+            android:id="@+id/btn_menu"
+            android:elevation="2dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_attempt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,17 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +67,6 @@ public class QuizActivity extends AppCompatActivity {
 
         initView();
         countQuestionData(); //Count max data quiz Firebase
-
 
         getSupportActionBar().hide();
     }
@@ -284,7 +288,6 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-
     private void reverseTimer(long countQuestion) {
         RotateAnimation makeVertical = new RotateAnimation(0, -90, RELATIVE_TO_SELF, 0.5f, RELATIVE_TO_SELF, 0.5f);
         makeVertical.setFillAfter(true);
@@ -341,7 +344,7 @@ public class QuizActivity extends AppCompatActivity {
         submitScoreBoard(new dataScoreBoard(googleSignInAccount.getDisplayName(), googleSignInAccount.getPhotoUrl().toString(),
                 String.valueOf(correct), decim.format(nilai)));
 
-        //Toast.makeText(QuizActivity.this, decim.format(nilai), Toast.LENGTH_LONG).show();
+        showDialogGameOver(decim.format(nilai), String.valueOf(correct), daftarQuiz.size());
     }
 
     private void submitScoreBoard(final dataScoreBoard dataScoreBoard) {
@@ -358,7 +361,7 @@ public class QuizActivity extends AppCompatActivity {
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                            // Jika child sudah dibuat
                             // Cek apakah nilai yang baru didapat lebih besar dari nilai di database
                             // jika iya replace nilai didatabase
                             float nilaiBaru = Float.parseFloat(decim.format(nilai));
@@ -378,6 +381,7 @@ public class QuizActivity extends AppCompatActivity {
                         }
                     });
                 }else {
+                    // Jika child belum ada, buat child dan isi dulu untuk pertama kali
                     database.child("scoreboard")
                             .child(dataScoreBoard.getNama())
                             .setValue(dataScoreBoard)
@@ -397,7 +401,8 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
-    private void updateNilaiBaru(dataScoreBoard dataScoreBoard) {
+    // Jika ada nilai lebih besar dari yang ada didatabase update nilai
+    private void updateNilaiBaru(final dataScoreBoard dataScoreBoard) {
         database.child("scoreboard")
                 .child(dataScoreBoard.getNama())
                 .setValue(dataScoreBoard).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -408,6 +413,24 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
+    private void showDialogGameOver(String nilai, String correct, int size) {
+        final Dialog dialog;
+        dialog = new Dialog(this);
+        Window window = dialog.getWindow();
+
+        window.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), 50));
+        dialog.setContentView(R.layout.dialog_scoreboard);
+        dialog.show();
+        final TextView tvScore, tvAttempt;
+
+        tvScore = dialog.findViewById(R.id.tv_Score);
+        tvAttempt = dialog.findViewById(R.id.tv_attempt);
+
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        tvScore.setText(nilai + " Score");
+        tvAttempt.setText("You attempt " + size + " questions and\nfrom that " + correct + " answer is correct");
+    }
 
     private void clearAnswer(Button button) {
         Drawable drawable = getResources().getDrawable(ic_edittext_style);
