@@ -18,17 +18,18 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.example.kasitom.R;
 import com.example.kasitom.model.dataQuiz;
 import com.example.kasitom.model.dataScoreBoard;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {
     private float nilai;
     private DecimalFormat decim = new DecimalFormat("###.##");
     private ArrayList<dataQuiz> daftarQuiz;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,6 @@ public class QuizActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
     }
-
 
     private void countQuestionData() {
         database.child("Quiz").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -107,8 +108,15 @@ public class QuizActivity extends AppCompatActivity {
             countDownTimer.cancel();
             isGameOver();
         } else {
+            // Clear false button
+            optA.setEnabled(true);
+            optB.setEnabled(true);
+            optC.setEnabled(true);
+            optD.setEnabled(true);
+
             tv_soalPosition.setText("Soal " + (iterator + 1) + " / " + daftarQuiz.size());
             tv_question.setText(daftarQuiz.get(iterator).getSoal());
+
             optA.setText(daftarQuiz.get(iterator).getOptionA());
             optB.setText(daftarQuiz.get(iterator).getOptionB());
             optC.setText(daftarQuiz.get(iterator).getOptionC());
@@ -117,6 +125,9 @@ public class QuizActivity extends AppCompatActivity {
             optA.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    optB.setEnabled(false);
+                    optC.setEnabled(false);
+                    optD.setEnabled(false);
                     if (optA.getText().toString().equals(daftarQuiz.get(iterator).getJawaban())) {
                         correctAnswer(optA);
                         correct++;
@@ -159,6 +170,9 @@ public class QuizActivity extends AppCompatActivity {
             optB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    optA.setEnabled(false);
+                    optC.setEnabled(false);
+                    optD.setEnabled(false);
                     if (optB.getText().toString().equals(daftarQuiz.get(iterator).getJawaban())) {
                         correctAnswer(optB);
                         correct++;
@@ -201,6 +215,9 @@ public class QuizActivity extends AppCompatActivity {
             optC.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    optA.setEnabled(false);
+                    optB.setEnabled(false);
+                    optD.setEnabled(false);
                     if (optC.getText().toString().equals(daftarQuiz.get(iterator).getJawaban())) {
                         correctAnswer(optC);
                         correct++;
@@ -243,6 +260,9 @@ public class QuizActivity extends AppCompatActivity {
             optD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    optA.setEnabled(false);
+                    optB.setEnabled(false);
+                    optC.setEnabled(false);
                     if (optD.getText().toString().equals(daftarQuiz.get(iterator).getJawaban())) {
                         correctAnswer(optD);
                         correct++;
@@ -347,58 +367,58 @@ public class QuizActivity extends AppCompatActivity {
     private void submitScoreBoard(final dataScoreBoard dataScoreBoard) {
         database.child("scoreboard")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                // cek apakah child sudah dibuat atau belum
-                if (dataSnapshot.hasChild(dataScoreBoard.getNama())){
-                    database.child("scoreboard")
-                            .child(dataScoreBoard.getNama())
-                            .child("nilai").addValueEventListener(new ValueEventListener() {
+                        // cek apakah child sudah dibuat atau belum
+                        if (dataSnapshot.hasChild(dataScoreBoard.getNama())) {
+                            database.child("scoreboard")
+                                    .child(dataScoreBoard.getNama())
+                                    .child("nilai").addValueEventListener(new ValueEventListener() {
 
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            // Jika child sudah dibuat
-                            // Cek apakah nilai yang baru didapat lebih besar dari nilai di database
-                            // jika iya replace nilai didatabase
-                            float nilaiBaru = Float.parseFloat(decim.format(nilai));
-                            float nilaiDataBase = Float.parseFloat(dataSnapshot.getValue().toString());
-                            Log.i("nilaiBaru", String.valueOf(nilaiBaru));
-                            Log.i("nilaidataBae", String.valueOf(nilaiDataBase));
-
-                            if (nilaiBaru > nilaiDataBase) {
-                                updateNilaiBaru(new dataScoreBoard(dataScoreBoard.getNama(), dataScoreBoard.getPhotoURI(),
-                                        String.valueOf(correct), String.valueOf(nilaiBaru).replaceAll("\\.?0*$", ""),
-                                        String.valueOf(countQuestion)));
-                            } else {
-                                Log.i("replacegagal", "hm");
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                }else {
-                    // Jika child belum ada, buat child dan isi dulu untuk pertama kali
-                    database.child("scoreboard")
-                            .child(dataScoreBoard.getNama())
-                            .setValue(dataScoreBoard)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
-                                public void onSuccess(Void aVoid) {
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    // Jika child sudah dibuat
+                                    // Cek apakah nilai yang baru didapat lebih besar dari nilai di database
+                                    // jika iya replace nilai didatabase
+                                    float nilaiBaru = Float.parseFloat(decim.format(nilai));
+                                    float nilaiDataBase = Float.parseFloat(dataSnapshot.getValue().toString());
+                                    Log.i("nilaiBaru", String.valueOf(nilaiBaru));
+                                    Log.i("nilaidataBae", String.valueOf(nilaiDataBase));
+
+                                    if (nilaiBaru > nilaiDataBase) {
+                                        updateNilaiBaru(new dataScoreBoard(dataScoreBoard.getNama(), dataScoreBoard.getPhotoURI(),
+                                                String.valueOf(correct), String.valueOf(nilaiBaru).replaceAll("\\.?0*$", ""),
+                                                String.valueOf(countQuestion)));
+                                    } else {
+                                        Log.i("replacegagal", "hm");
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
                             });
-                }
-            }
+                        } else {
+                            // Jika child belum ada, buat child dan isi dulu untuk pertama kali
+                            database.child("scoreboard")
+                                    .child(dataScoreBoard.getNama())
+                                    .setValue(dataScoreBoard)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        }
+                                    });
+                        }
+                    }
 
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     // Jika ada nilai lebih besar dari yang ada didatabase update nilai
@@ -414,14 +434,17 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void showDialogGameOver(String nilai, String correct, int size) {
-        final Dialog dialog;
         dialog = new Dialog(this);
         Window window = dialog.getWindow();
 
         window.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), 50));
 
         dialog.setContentView(R.layout.dialog_scoreboard);
-        dialog.show();
+        try {
+            dialog.show();
+        } catch (WindowManager.BadTokenException e) {
+            Log.i("apa token", String.valueOf(e));
+        }
         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         final TextView tvScore, tvAttempt;
@@ -473,11 +496,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void correctAnswer(Button button) {
+        button.setEnabled(true); // make true to show drawable
         Drawable drawable = getResources().getDrawable(ic_optioncorrect_style);
 
         button.setBackgroundDrawable(drawable);
     }
-
 
     private void initView() {
         database = FirebaseDatabase.getInstance().getReference();
@@ -492,6 +515,13 @@ public class QuizActivity extends AppCompatActivity {
         tv_soalPosition = findViewById(R.id.count_Questions);
 
         pb_countDown = findViewById(R.id.pb_countDown);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (dialog != null && dialog.isShowing())
+            dialog.dismiss();
+        super.onDestroy();
     }
 
     @Override

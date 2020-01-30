@@ -1,7 +1,10 @@
 package com.example.kasitom.model;
 
+import java.util.Date;
+
 public class dataScoreBoard {
     String nama, photoURI, correct, nilai, size, key;
+    long scoreUserTime;
 
     public dataScoreBoard(){
 
@@ -13,6 +16,7 @@ public class dataScoreBoard {
         this.correct = correct;
         this.nilai = nilai;
         this.size = size;
+        scoreUserTime = new Date().getTime();
     }
 
     public String getNama() {
@@ -41,5 +45,9 @@ public class dataScoreBoard {
 
     public String getKey() {
         return key;
+    }
+
+    public long getScoreUserTime() {
+        return scoreUserTime;
     }
 }

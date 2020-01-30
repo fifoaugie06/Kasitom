@@ -13,6 +13,7 @@ import com.example.kasitom.R;
 import com.example.kasitom.model.dataScoreBoard;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class AdapterScoreboard extends RecyclerView.Adapter<AdapterScoreboard.ViewHolder> {
@@ -38,9 +39,13 @@ public class AdapterScoreboard extends RecyclerView.Adapter<AdapterScoreboard.Vi
         final String size = daftarScore.get(position).getSize();
         final String score = daftarScore.get(position).getNilai();
 
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy 'at' h:mm a");
+        final String date = formatter.format(daftarScore.get(position).getScoreUserTime());
+
         final int wrong = (Integer.parseInt(size) - Integer.parseInt(correct));
 
         holder.tv_nama.setText(nama);
+        holder.tv_tanggal.setText(date);
         holder.tv_correctVal.setText(correct);
         holder.tv_wrongVal.setText(String.valueOf(wrong));
         holder.tv_score.setText(score);
@@ -57,7 +62,7 @@ public class AdapterScoreboard extends RecyclerView.Adapter<AdapterScoreboard.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_nama, tv_correctVal, tv_wrongVal, tv_score, tv_tanggal, tv_fetchData;
+        TextView tv_nama, tv_correctVal, tv_wrongVal, tv_score, tv_tanggal;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
