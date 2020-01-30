@@ -5,12 +5,12 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import com.example.kasitom.quiz.ScoreboardActivity;
 import com.example.kasitom.ui.home.HomeFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
-import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +35,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -133,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
 
+        }else if (id == R.id.nav_papanSkor){
+            startActivity(new Intent(MainActivity.this, ScoreboardActivity.class));
         } else if (id == R.id.nav_tentang) {
             startActivity(new Intent(MainActivity.this, TentangActivity.class));
         } else if (id == R.id.nav_keluar) {

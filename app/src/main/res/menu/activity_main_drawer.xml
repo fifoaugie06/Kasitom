@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_papanSkor"
+            android:icon="@drawable/ic_assessment_grey_24dp"
+            android:title="@string/menu_papanSkor"/>
+        <item
             android:id="@+id/nav_ubahBahasa"
             android:icon="@drawable/ic_settings_grey_24dp"
             android:title="@string/menu_ubahBahasa"/>

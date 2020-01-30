@@ -22,7 +22,7 @@ public class GlobalChat extends AppCompatActivity {
     private ImageButton btn_SendMsg;
     private EditText inp_msg;
     private String loggedInUserName = null;
-    ListView listView;
+    private ListView listView;
     private static MessageAdapter adapter;
 
     @Override

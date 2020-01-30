@@ -1,10 +1,5 @@
 package com.example.kasitom.model;
 
-import android.net.Uri;
-
-import java.net.URL;
-import java.util.Date;
-
 public class dataMessage {
     private String messageText;
     private String messageUser;

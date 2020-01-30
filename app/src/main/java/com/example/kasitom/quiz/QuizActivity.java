@@ -1,10 +1,11 @@
 package com.example.kasitom.quiz;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -22,17 +23,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.kasitom.R;
 import com.example.kasitom.model.dataQuiz;
 import com.example.kasitom.model.dataScoreBoard;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,7 +55,6 @@ public class QuizActivity extends AppCompatActivity {
     private float nilai;
     private DecimalFormat decim = new DecimalFormat("###.##");
     private ArrayList<dataQuiz> daftarQuiz;
-    private GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -342,7 +338,8 @@ public class QuizActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance().getReference();
         submitScoreBoard(new dataScoreBoard(googleSignInAccount.getDisplayName(), googleSignInAccount.getPhotoUrl().toString(),
-                String.valueOf(correct), decim.format(nilai)));
+                String.valueOf(correct), decim.format(nilai), String.valueOf(countQuestion)));
+        Log.i("tesz", decim.format(nilai));
 
         showDialogGameOver(decim.format(nilai), String.valueOf(correct), daftarQuiz.size());
     }
@@ -366,10 +363,13 @@ public class QuizActivity extends AppCompatActivity {
                             // jika iya replace nilai didatabase
                             float nilaiBaru = Float.parseFloat(decim.format(nilai));
                             float nilaiDataBase = Float.parseFloat(dataSnapshot.getValue().toString());
+                            Log.i("nilaiBaru", String.valueOf(nilaiBaru));
+                            Log.i("nilaidataBae", String.valueOf(nilaiDataBase));
 
                             if (nilaiBaru > nilaiDataBase) {
                                 updateNilaiBaru(new dataScoreBoard(dataScoreBoard.getNama(), dataScoreBoard.getPhotoURI(),
-                                        String.valueOf(correct), String.valueOf(nilaiBaru)));
+                                        String.valueOf(correct), String.valueOf(nilaiBaru).replaceAll("\\.?0*$", ""),
+                                        String.valueOf(countQuestion)));
                             } else {
                                 Log.i("replacegagal", "hm");
                             }
@@ -419,17 +419,45 @@ public class QuizActivity extends AppCompatActivity {
         Window window = dialog.getWindow();
 
         window.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), 50));
+
         dialog.setContentView(R.layout.dialog_scoreboard);
         dialog.show();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         final TextView tvScore, tvAttempt;
+        final Button btnScoreboard, btnMenu;
 
         tvScore = dialog.findViewById(R.id.tv_Score);
         tvAttempt = dialog.findViewById(R.id.tv_attempt);
-
-        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        btnScoreboard = dialog.findViewById(R.id.btn_scoreBoard);
+        btnMenu = dialog.findViewById(R.id.btn_menu);
 
         tvScore.setText(nilai + " Score");
         tvAttempt.setText("You attempt " + size + " questions and\nfrom that " + correct + " answer is correct");
+
+        btnScoreboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QuizActivity.this, ScoreboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                finish();
+            }
+        });
+
     }
 
     private void clearAnswer(Button button) {

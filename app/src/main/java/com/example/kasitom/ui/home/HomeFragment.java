@@ -5,22 +5,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 
 import com.example.kasitom.R;
 import com.example.kasitom.chatroom.GlobalChat;
 import com.example.kasitom.quiz.QuizActivity;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class HomeFragment extends Fragment {
     private View view;
@@ -34,8 +29,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         cv_btnAntonim = view.findViewById(R.id.btn_antonim);
         cv_btnSinonim = view.findViewById(R.id.btn_sinonim);
         cv_btnGlobalChat = view.findViewById(R.id.btn_chatglobal);

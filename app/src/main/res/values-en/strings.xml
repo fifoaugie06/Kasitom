@@ -27,5 +27,6 @@
     <string name="OptionC">Option C</string>
     <string name="OptionD">Option D</string>
     <string name="fetchData">Fetching data...</string>
+    <string name="menu_papanSkor">Scoreboard</string>
 
 </resources>
