@@ -12,8 +12,6 @@
         <activity android:name=".quiz.ScoreboardActivity"></activity>
         <activity android:name=".quiz.QuizActivity" />
         <activity android:name=".chatroom.GlobalChat" />
-        <activity android:name=".chat.chatroom" />
-        <activity android:name=".chat.GlobalChat" />
         <activity android:name=".TentangActivity" />
         <activity android:name=".splashScreen">
             <intent-filter>

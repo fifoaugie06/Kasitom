@@ -3,6 +3,7 @@ package com.example.kasitom.quiz;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -438,10 +439,12 @@ public class QuizActivity extends AppCompatActivity {
         Window window = dialog.getWindow();
 
         window.setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT), 50));
-
         dialog.setContentView(R.layout.dialog_scoreboard);
+
         try {
-            dialog.show();
+            if (!(this).isFinishing()) {
+                dialog.show();
+            }
         } catch (WindowManager.BadTokenException e) {
             Log.i("apa token", String.valueOf(e));
         }
@@ -470,6 +473,7 @@ public class QuizActivity extends AppCompatActivity {
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.dismiss();
                 finish();
             }
         });
@@ -477,6 +481,7 @@ public class QuizActivity extends AppCompatActivity {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
+                dialog.dismiss();
                 finish();
             }
         });
