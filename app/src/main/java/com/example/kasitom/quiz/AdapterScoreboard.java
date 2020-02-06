@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class AdapterScoreboard extends RecyclerView.Adapter<AdapterScoreboard.ViewHolder> {
     private ArrayList<dataScoreBoard> daftarScore;
-    private ImageView img_photo;
 
     public AdapterScoreboard(ArrayList<dataScoreBoard> daftarScore) {
         this.daftarScore = daftarScore;
@@ -53,7 +52,7 @@ public class AdapterScoreboard extends RecyclerView.Adapter<AdapterScoreboard.Vi
                 .load(photoUri)
                 .centerInside()
                 .resize(350, 350)
-                .into(img_photo);
+                .into(holder.img_photo);
     }
 
     @Override
@@ -63,6 +62,7 @@ public class AdapterScoreboard extends RecyclerView.Adapter<AdapterScoreboard.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nama, tv_correctVal, tv_wrongVal, tv_score, tv_tanggal;
+        ImageView img_photo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

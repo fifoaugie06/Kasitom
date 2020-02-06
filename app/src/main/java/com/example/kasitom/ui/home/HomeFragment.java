@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -14,6 +13,8 @@ import androidx.fragment.app.Fragment;
 
 
 import com.example.kasitom.R;
+import com.example.kasitom.antonimSinonim.AntonimActivity;
+import com.example.kasitom.antonimSinonim.SinonimActivity;
 import com.example.kasitom.chatroom.GlobalChat;
 import com.example.kasitom.quiz.QuizActivity;
 
@@ -38,13 +39,15 @@ public class HomeFragment extends Fragment {
         cv_btnAntonim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Antonim", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), AntonimActivity.class);
+                startActivity(intent);
             }
         });
         cv_btnSinonim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Sinonim", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), SinonimActivity.class);
+                startActivity(intent);
             }
         });
         cv_btnGlobalChat.setOnClickListener(new View.OnClickListener() {

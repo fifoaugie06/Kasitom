@@ -28,5 +28,6 @@
     <string name="OptionD">Option D</string>
     <string name="fetchData">Fetching data...</string>
     <string name="menu_papanSkor">Scoreboard</string>
+    <string name="search">search</string>
 
 </resources>

@@ -27,6 +27,7 @@
     <string name="OptionD">Option D</string>
     <string name="fetchData">Mengambil data...</string>
     <string name="menu_papanSkor">Scoreboard</string>
+    <string name="search">cari</string>
 
 
 </resources>
