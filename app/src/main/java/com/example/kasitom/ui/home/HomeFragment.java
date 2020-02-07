@@ -19,18 +19,16 @@ import com.example.kasitom.chatroom.GlobalChat;
 import com.example.kasitom.quiz.QuizActivity;
 
 public class HomeFragment extends Fragment {
-    private View view;
-    private CardView cv_btnAntonim, cv_btnSinonim, cv_btnGlobalChat, cv_btnQuiz;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        CardView cv_btnAntonim, cv_btnSinonim, cv_btnGlobalChat, cv_btnQuiz;
+
         cv_btnAntonim = view.findViewById(R.id.btn_antonim);
         cv_btnSinonim = view.findViewById(R.id.btn_sinonim);
         cv_btnGlobalChat = view.findViewById(R.id.btn_chatglobal);

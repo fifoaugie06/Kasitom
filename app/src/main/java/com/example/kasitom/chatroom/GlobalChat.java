@@ -19,17 +19,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Date;
 
 public class GlobalChat extends AppCompatActivity {
-    private ImageButton btn_SendMsg;
     private EditText inp_msg;
-    private String loggedInUserName = null;
     private ListView listView;
-    private static MessageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_global_chat);
+
+        ImageButton btn_SendMsg;
 
         getSupportActionBar().setTitle(R.string.chatglobal);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -43,7 +41,7 @@ public class GlobalChat extends AppCompatActivity {
             public void onClick(View view) {
                 if (inp_msg.length() == 0) {
                     inp_msg.setError("Tidak Boleh Kosong");
-                } else{
+                } else {
                     FirebaseDatabase.getInstance()
                             .getReference()
                             .child("globalchat")
@@ -62,6 +60,9 @@ public class GlobalChat extends AppCompatActivity {
     }
 
     private void showAllOldMessages() {
+        String loggedInUserName;
+        MessageAdapter adapter;
+
         loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("Main", "user id: " + loggedInUserName);
 

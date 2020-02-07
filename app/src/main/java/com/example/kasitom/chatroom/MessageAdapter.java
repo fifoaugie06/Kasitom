@@ -13,7 +13,7 @@ public class MessageAdapter extends FirebaseListAdapter<dataMessage> {
     private GlobalChat activity;
     private dataMessage dataMessage;
 
-    public MessageAdapter(GlobalChat activity, Class<dataMessage> modelClass, int modelLayout, DatabaseReference ref) {
+    MessageAdapter(GlobalChat activity, Class<dataMessage> modelClass, int modelLayout, DatabaseReference ref) {
         super(activity, modelClass, modelLayout, ref);
         this.activity = activity;
     }
@@ -24,15 +24,13 @@ public class MessageAdapter extends FirebaseListAdapter<dataMessage> {
         TextView messageUser = v.findViewById(R.id.message_user);
         //TextView messageTime = v.findViewById(R.id.message_time);
 
-        if (dataMessage.getMessageUserId().equals(activity.getLoggedInUserName())){
+        if (dataMessage.getMessageUserId().equals(activity.getLoggedInUserName())) {
             messageText.setText(model.getMessageText());
-            messageUser.setText("Saya");
-        }else {
+            messageUser.setText(R.string.saya);
+        } else {
             messageText.setText(model.getMessageText());
             messageUser.setText(model.getMessageUser());
         }
-
-
         // Format the date before showing it
     }
 
@@ -41,8 +39,7 @@ public class MessageAdapter extends FirebaseListAdapter<dataMessage> {
         dataMessage = getItem(position);
         if (dataMessage.getMessageUserId().equals(activity.getLoggedInUserName())) {
             view = activity.getLayoutInflater().inflate(R.layout.item_out_message, viewGroup, false);
-        }
-        else{
+        } else {
             view = activity.getLayoutInflater().inflate(R.layout.item_in_message, viewGroup, false);
         }
         //generating view

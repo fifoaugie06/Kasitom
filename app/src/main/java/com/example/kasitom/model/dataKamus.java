@@ -12,16 +12,8 @@ public class dataKamus implements Serializable {
 
     }
 
-    public void setJudul(String judul) {
-        this.judul = judul;
-    }
-
     public String getJudul() {
         return judul;
-    }
-
-    public void setArti(String arti) {
-        this.arti = arti;
     }
 
     public String getArti() {

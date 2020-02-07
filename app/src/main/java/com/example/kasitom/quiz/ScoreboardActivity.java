@@ -22,16 +22,17 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ScoreboardActivity extends AppCompatActivity {
-    private DatabaseReference database;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<dataScoreBoard> dataScoreBoards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scoreboard);
+
+        DatabaseReference database;
+        RecyclerView.LayoutManager layoutManager;
 
         getSupportActionBar().setTitle(R.string.menu_papanSkor);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,7 +49,7 @@ public class ScoreboardActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 dataScoreBoards = new ArrayList<>();
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
                     dataScoreBoard dataScoreBoard = noteDataSnapshot.getValue(dataScoreBoard.class);
                     dataScoreBoard.setKey(noteDataSnapshot.getKey());
 
@@ -59,10 +60,10 @@ public class ScoreboardActivity extends AppCompatActivity {
                 Collections.sort(dataScoreBoards, new Comparator<dataScoreBoard>() {
                     @Override
                     public int compare(dataScoreBoard lhs, dataScoreBoard rhs) {
-                        if (Float.parseFloat(lhs.getNilai()) > Float.parseFloat(rhs.getNilai())){
-                            return  -1;
-                        }else {
-                            return 1;
+                        if (Float.parseFloat(lhs.getNilai()) > Float.parseFloat(rhs.getNilai())) {
+                            return -1;
+                        } else {
+                            return 0;
                         }
                     }
                 });

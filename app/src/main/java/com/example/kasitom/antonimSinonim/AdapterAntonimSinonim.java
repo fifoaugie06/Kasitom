@@ -17,7 +17,7 @@ import java.util.ArrayList;
 class AdapterAntonimSinonim extends RecyclerView.Adapter<AdapterAntonimSinonim.ViewHolder> {
     private ArrayList<dataKamus> daftarKamus;
 
-    public AdapterAntonimSinonim(ArrayList<dataKamus> daftarKamus) {
+    AdapterAntonimSinonim(ArrayList<dataKamus> daftarKamus) {
         this.daftarKamus = daftarKamus;
     }
 
@@ -25,9 +25,7 @@ class AdapterAntonimSinonim extends RecyclerView.Adapter<AdapterAntonimSinonim.V
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent,false);
-        ViewHolder vh = new ViewHolder(view);
-
-        return vh;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -51,10 +49,10 @@ class AdapterAntonimSinonim extends RecyclerView.Adapter<AdapterAntonimSinonim.V
         return daftarKamus.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout expandableLayout;
         TextView tvJudul, tvArti;
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tv_judul);
             tvArti = itemView.findViewById(R.id.tv_arti);

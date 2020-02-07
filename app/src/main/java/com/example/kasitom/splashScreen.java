@@ -20,7 +20,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class splashScreen extends AppCompatActivity {
-    private ImageView logo;
-    private static int splashTimeOut = 2000;
     private static final int RC_SIGN_IN = 1;
     private static final String TAG = "GoogleActivity";
     private GoogleSignInClient mGoogleSignInClient;
@@ -40,8 +37,11 @@ public class splashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        logo = findViewById(R.id.splash_logo);
 
+        ImageView logo;
+        int splashTimeOut = 2000;
+
+        logo = findViewById(R.id.splash_logo);
         getSupportActionBar().hide();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -125,7 +125,6 @@ public class splashScreen extends AppCompatActivity {
             updateUI(null);
         }
     }
-
     private void updateUI(FirebaseUser user) {
 
     }

@@ -29,5 +29,6 @@
     <string name="fetchData">Fetching data...</string>
     <string name="menu_papanSkor">Scoreboard</string>
     <string name="search">search</string>
+    <string name="saya">Me</string>
 
 </resources>

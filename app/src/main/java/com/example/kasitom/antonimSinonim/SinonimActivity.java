@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.kasitom.R;
 import com.example.kasitom.model.dataKamus;
@@ -24,16 +27,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class SinonimActivity extends AppCompatActivity {
-    private DatabaseReference database;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<dataKamus> daftarSinonim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sinonim);
+        setContentView(R.layout.activity_antonim_sinonim);
+
+        DatabaseReference database;
+        RecyclerView.LayoutManager layoutManager;
 
         rvView = findViewById(R.id.rv_antonim);
         rvView.setHasFixedSize(true);
@@ -41,13 +45,14 @@ public class SinonimActivity extends AppCompatActivity {
         rvView.setLayoutManager(layoutManager);
         getSupportActionBar().setTitle(R.string.sinonim);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final LinearLayout progressBar = findViewById(R.id.linlaHeaderProgress);
 
+        progressBar.setVisibility(View.VISIBLE);
         database = FirebaseDatabase.getInstance().getReference();
 
         database.child("sinonim").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 daftarSinonim = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
                     dataKamus dataSinonim = noteDataSnapshot.getValue(dataKamus.class);
@@ -57,10 +62,11 @@ public class SinonimActivity extends AppCompatActivity {
                 }
                 adapter = new AdapterAntonimSinonim(daftarSinonim);
                 rvView.setAdapter(adapter);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println(databaseError.getDetails() + " " + databaseError.getMessage());
             }
         });
@@ -115,8 +121,8 @@ public class SinonimActivity extends AppCompatActivity {
             }
             adapter = new AdapterAntonimSinonim(dataKamusList);
             rvView.setAdapter(adapter);
-        }catch (NullPointerException e){
-
+        } catch (NullPointerException e) {
+            Log.i("e", String.valueOf(e));
         }
     }
 }

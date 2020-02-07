@@ -1,8 +1,8 @@
 package com.example.kasitom.model;
 
 public class dataQuiz {
-    public String soal, key;
-    public String optionA, optionB, optionC, optionD, jawaban;
+    private String soal, key;
+    private String optionA, optionB, optionC, optionD, jawaban;
 
     public dataQuiz(){
 
