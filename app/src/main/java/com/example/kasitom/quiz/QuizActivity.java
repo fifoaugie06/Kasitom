@@ -54,7 +54,7 @@ public class QuizActivity extends AppCompatActivity {
     private DatabaseReference database;
     private long countQuestion = 0;
     private float nilai;
-    private DecimalFormat decim = new DecimalFormat("###.##");
+    private DecimalFormat decim = new DecimalFormat("###,##");
     private ArrayList<dataQuiz> daftarQuiz;
     private Dialog dialog;
 
