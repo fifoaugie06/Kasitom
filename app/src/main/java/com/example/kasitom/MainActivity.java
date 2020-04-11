@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onComplete(@NonNull Task<Void> task) {
                         Intent intent = new Intent(MainActivity.this, splashScreen.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
     }

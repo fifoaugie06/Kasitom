@@ -21,24 +21,7 @@
         android:background="@android:color/white"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-
         app:menu="@menu/activity_main_drawer">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="582dp"
-            android:layout_gravity="bottom">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="240dp"
-                android:src="@drawable/logo_navdraw"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

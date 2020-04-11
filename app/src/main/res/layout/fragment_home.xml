@@ -70,14 +70,22 @@
                 app:layout_constraintStart_toStartOf="@+id/card_antonim"
                 app:layout_constraintTop_toBottomOf="@+id/card_antonim">
 
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/antonim"
-                    android:textAlignment="center"
-                    android:textColor="#3498DB"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/antonim"
+                        android:textAlignment="center"
+                        android:textColor="#3498DB"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -107,14 +115,20 @@
                 app:layout_constraintStart_toStartOf="@+id/card_sinonim"
                 app:layout_constraintTop_toBottomOf="@+id/card_sinonim">
 
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/sinonim"
-                    android:textAlignment="center"
-                    android:textColor="#3498DB"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sinonim"
+                        android:textAlignment="center"
+                        android:textColor="#3498DB"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -147,14 +161,21 @@
                 app:layout_constraintStart_toStartOf="@+id/card_chatglobal"
                 app:layout_constraintTop_toBottomOf="@+id/card_chatglobal">
 
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/chatglobal"
-                    android:textAlignment="center"
-                    android:textColor="#3498DB"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/chatglobal"
+                        android:textAlignment="center"
+                        android:textColor="#3498DB"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -187,19 +208,22 @@
                 app:layout_constraintStart_toStartOf="@+id/card_quiz"
                 app:layout_constraintTop_toBottomOf="@+id/card_quiz">
 
-                <TextView
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/soal"
-                    android:textAlignment="center"
-                    android:textColor="#3498DB"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/soal"
+                        android:textAlignment="center"
+                        android:textColor="#3498DB"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

@@ -13,7 +13,8 @@ import android.widget.ListView;
 
 import com.example.kasitom.R;
 import com.example.kasitom.model.dataMessage;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
@@ -26,6 +27,8 @@ public class GlobalChat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_global_chat);
+
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(GlobalChat.this);
 
         ImageButton btn_SendMsg;
 
@@ -42,17 +45,19 @@ public class GlobalChat extends AppCompatActivity {
                 if (inp_msg.length() == 0) {
                     inp_msg.setError("Tidak Boleh Kosong");
                 } else {
-                    FirebaseDatabase.getInstance()
-                            .getReference()
-                            .child("globalchat")
-                            .push()
-                            .setValue(new dataMessage(inp_msg.getText().toString(),
-                                    FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
-                                    FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                    FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString(),
-                                    new Date().getTime()
-                            ));
-                    inp_msg.setText("");
+                    if (account != null) {
+                        FirebaseDatabase.getInstance()
+                                .getReference()
+                                .child("globalchat")
+                                .push()
+                                .setValue(new dataMessage(inp_msg.getText().toString(),
+                                        account.getDisplayName(),
+                                        account.getId(),
+                                        account.getPhotoUrl().toString(),
+                                        new Date().getTime()
+                                ));
+                        inp_msg.setText("");
+                    }
                 }
             }
         });
@@ -60,10 +65,11 @@ public class GlobalChat extends AppCompatActivity {
     }
 
     private void showAllOldMessages() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(GlobalChat.this);
         String loggedInUserName;
         MessageAdapter adapter;
 
-        loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        loggedInUserName = account.getId();
         Log.d("Main", "user id: " + loggedInUserName);
 
         adapter = new MessageAdapter(this, dataMessage.class, R.layout.item_in_message,
@@ -72,7 +78,8 @@ public class GlobalChat extends AppCompatActivity {
     }
 
     public String getLoggedInUserName() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(GlobalChat.this);
+        return account.getId();
     }
 
     @Override
