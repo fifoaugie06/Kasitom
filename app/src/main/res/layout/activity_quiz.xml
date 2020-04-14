@@ -4,131 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#F3F3F3"
     tools:context=".quiz.QuizActivity">
 
-    <Button
-        android:id="@+id/btn_optionA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:background="@drawable/ic_edittext_style"
-        app:layout_constraintTop_toBottomOf="@+id/parent_pbCountdown"
-        android:text="@string/OptionA" />
-
-    <Button
-        android:id="@+id/btn_optionB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:background="@drawable/ic_edittext_style"
-        app:layout_constraintTop_toBottomOf="@+id/btn_optionA"
-        android:text="@string/OptionB" />
-
-    <Button
-        android:id="@+id/btn_optionC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:background="@drawable/ic_edittext_style"
-        app:layout_constraintTop_toBottomOf="@+id/btn_optionB"
-        android:text="@string/OptionC" />
-
-    <Button
-        android:id="@+id/btn_optionD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:background="@drawable/ic_edittext_style"
-        app:layout_constraintTop_toBottomOf="@+id/btn_optionC"
-        android:text="@string/OptionD" />
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <View
         android:id="@+id/container_Atas"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@color/colorPrimary"
+        android:layout_height="210dp"
+        android:background="@drawable/ic_gradient_quiz"
         android:padding="@dimen/activity_vertical_margin"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="3dp"
+        android:id="@+id/img_photo"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:src="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/container_Atas" />
+
+    <LinearLayout
+        android:layout_marginStart="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/img_photo"
+        app:layout_constraintStart_toEndOf="@+id/img_photo"
+        app:layout_constraintTop_toTopOf="@+id/img_photo"
+        android:orientation="vertical">
+
+        <TextView
+            android:maxLength="25"
+            android:textAllCaps="true"
+            android:id="@+id/tv_nama"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Fifo Augie"/>
 
-            <LinearLayout
-                android:id="@+id/container_Soal"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/ic_question_style"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/activity_horizontal_margin"
-                android:paddingEnd="@dimen/activity_horizontal_margin"
-                app:layout_constraintTop_toBottomOf="@id/tv_latihanSoal">
+        <TextView
+            android:layout_marginTop="4dp"
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:maxLength="33"
+            tools:text="fifoaugie06@gmail.com"/>
 
-                <TextView
-                    android:id="@+id/tv_Question"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fetchData"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_latihanSoal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/soal"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/count_Questions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/fetchData"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/container_Soal" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:elevation="4dp"
-        android:background="@drawable/ic_bg_countdown"
         android:id="@+id/parent_pbCountdown"
-        android:layout_marginEnd="16dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="@+id/container_Atas"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="@drawable/ic_bg_countdown"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/container_Atas">
+        app:layout_constraintTop_toTopOf="@+id/container_Atas">
 
         <ProgressBar
             android:id="@+id/pb_countDown"
@@ -139,6 +79,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,6 +89,173 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pb_countDown"
             tools:text="02:00" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_Atas"
+        app:layout_constraintHeight_percent="0.32"
+        app:layout_constraintTop_toBottomOf="@+id/container_Atas">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:id="@+id/count_Questions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_border_quizposition"
+                    android:paddingStart="@dimen/activity_vertical_margin"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="@dimen/activity_vertical_margin"
+                    android:paddingBottom="8dp"
+                    android:text="@string/fetchData"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/ic_star_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_scores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:text="..."
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:textAlignment="center"
+                    tools:text="@string/fetchData"
+                    android:id="@+id/tv_Question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/count_Questions"
+                    app:layout_constraintWidth_percent="0.7" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="0.5"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/btn_optionA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_edittext_style"
+                    android:text="@string/fetchData"
+                    android:textColor="#7f8c8d" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="0.5"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/btn_optionB"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_edittext_style"
+                    android:text="@string/fetchData"
+                    android:textColor="#7f8c8d" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="0.5"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/btn_optionC"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_edittext_style"
+                    android:text="@string/fetchData"
+                    android:textColor="#7f8c8d" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="0.5"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="8dp">
+
+                <Button
+                    android:id="@+id/btn_optionD"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_edittext_style"
+                    android:text="@string/fetchData"
+                    android:textColor="#7f8c8d" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

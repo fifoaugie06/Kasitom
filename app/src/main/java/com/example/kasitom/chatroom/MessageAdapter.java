@@ -2,12 +2,14 @@ package com.example.kasitom.chatroom;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kasitom.R;
 import com.example.kasitom.model.dataMessage;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
 
 public class MessageAdapter extends FirebaseListAdapter<dataMessage> {
     private GlobalChat activity;

@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -46,7 +48,8 @@ import static com.example.kasitom.R.drawable.ic_optioncorrect_style;
 import static com.example.kasitom.R.drawable.ic_optionwrong_style;
 
 public class QuizActivity extends AppCompatActivity {
-    private TextView tv_question, tv_soalPosition, tv_timer;
+    private TextView tv_question, tv_soalPosition, tv_timer, tv_scores, tv_nama, tv_email;
+    private ImageView tv_Photo;
     private ProgressBar pb_countDown;
     private int endTime = 250, progress, correct = 0, iterator = -1;
     private CountDownTimer countDownTimer;
@@ -54,7 +57,7 @@ public class QuizActivity extends AppCompatActivity {
     private DatabaseReference database;
     private long countQuestion = 0;
     private float nilai;
-    private DecimalFormat decim = new DecimalFormat("###,##");
+    private DecimalFormat decim = new DecimalFormat("###.##");
     private ArrayList<dataQuiz> daftarQuiz;
     private Dialog dialog;
 
@@ -98,6 +101,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() {
+        tv_scores.setText(String.valueOf(correct));
         iterator++;
 
         if (iterator > (daftarQuiz.size() - 1)) {
@@ -488,12 +492,17 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void clearAnswer(Button button) {
+        button.setTextColor(Color.parseColor("#7f8c8d"));
+        button.setTypeface(null, Typeface.NORMAL);
+
         Drawable drawable = getResources().getDrawable(ic_edittext_style);
 
         button.setBackgroundDrawable(drawable);
     }
 
     private void wrongAnswer(Button button) {
+        button.setTextColor(Color.parseColor("#000000"));
+        button.setTypeface(null, Typeface.BOLD);
         Drawable drawable = getResources().getDrawable(ic_optionwrong_style);
 
         button.setBackgroundDrawable(drawable);
@@ -501,6 +510,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private void correctAnswer(Button button) {
         button.setEnabled(true); // make true to show drawable
+        button.setTextColor(Color.parseColor("#000000"));
+        button.setTypeface(null, Typeface.BOLD);
         Drawable drawable = getResources().getDrawable(ic_optioncorrect_style);
 
         button.setBackgroundDrawable(drawable);
@@ -508,17 +519,31 @@ public class QuizActivity extends AppCompatActivity {
 
     private void initView() {
         database = FirebaseDatabase.getInstance().getReference();
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
 
         optA = findViewById(R.id.btn_optionA);
         optB = findViewById(R.id.btn_optionB);
         optC = findViewById(R.id.btn_optionC);
         optD = findViewById(R.id.btn_optionD);
 
+        tv_Photo = findViewById(R.id.img_photo);
+
         tv_question = findViewById(R.id.tv_Question);
         tv_timer = findViewById(R.id.tv_timer);
         tv_soalPosition = findViewById(R.id.count_Questions);
+        tv_scores = findViewById(R.id.tv_scores);
+        tv_nama = findViewById(R.id.tv_nama);
+        tv_email = findViewById(R.id.tv_email);
 
         pb_countDown = findViewById(R.id.pb_countDown);
+
+        Picasso.get()
+                .load(googleSignInAccount.getPhotoUrl())
+                .centerInside()
+                .resize(200, 200)
+                .into(tv_Photo);
+        tv_nama.setText(googleSignInAccount.getDisplayName());
+        tv_email.setText(googleSignInAccount.getEmail());
     }
 
     @Override

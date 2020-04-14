@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
@@ -36,7 +37,9 @@ public class splashScreen extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_splash_screen);
 
         ImageView logo;
+        SignInButton signInButton;
         logo = findViewById(R.id.splash_logo);
+        signInButton = findViewById(R.id.sign_in_button);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -47,7 +50,8 @@ public class splashScreen extends AppCompatActivity implements View.OnClickListe
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.mysplashanimation);
         logo.startAnimation(myanim);
 
-        findViewById(R.id.sign_in_button).setOnClickListener(splashScreen.this);
+        signInButton.setOnClickListener(splashScreen.this);
+        signInButton.startAnimation(myanim);
 
         getSupportActionBar().hide();
     }

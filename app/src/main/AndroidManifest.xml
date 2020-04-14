@@ -3,6 +3,7 @@
     package="com.example.kasitom">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon_kasitom"
@@ -10,7 +11,7 @@
         android:roundIcon="@drawable/icon_kasitom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".antonimSinonim.SinonimActivity"></activity>
+        <activity android:name=".antonimSinonim.SinonimActivity" />
         <activity android:name=".antonimSinonim.AntonimActivity" />
         <activity android:name=".quiz.ScoreboardActivity" />
         <activity android:name=".quiz.QuizActivity" />
