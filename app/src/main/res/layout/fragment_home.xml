@@ -17,7 +17,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bg_atas"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.28"
             android:background="@drawable/bg_home_atas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,44 +36,47 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/home_parent"
-            android:layout_width="330dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:padding="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="@+id/bg_atas"
             app:layout_constraintStart_toStartOf="@+id/bg_atas"
-            app:layout_constraintTop_toBottomOf="@id/bg_atas">
+            app:layout_constraintTop_toBottomOf="@id/bg_atas"
+            app:layout_constraintWidth_percent="0.85">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_antonim"
-                android:layout_width="150dp"
-                android:layout_height="180dp"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
                 app:cardCornerRadius="@dimen/activity_vertical_margin"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/logo_antonim" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_antonim"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="@dimen/activity_vertical_margin"
                 app:layout_constraintEnd_toEndOf="@+id/card_antonim"
                 app:layout_constraintStart_toStartOf="@+id/card_antonim"
-                app:layout_constraintTop_toBottomOf="@+id/card_antonim">
+                app:layout_constraintTop_toBottomOf="@+id/card_antonim"
+                app:layout_constraintWidth_percent="0.47">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="6dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -90,34 +94,37 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_sinonim"
-                android:layout_width="150dp"
-                android:layout_height="180dp"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
                 app:cardCornerRadius="@dimen/activity_vertical_margin"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/logo_sinonim" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_sinonim"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="@dimen/activity_vertical_margin"
                 app:layout_constraintEnd_toEndOf="@+id/card_sinonim"
                 app:layout_constraintStart_toStartOf="@+id/card_sinonim"
-                app:layout_constraintTop_toBottomOf="@+id/card_sinonim">
+                app:layout_constraintTop_toBottomOf="@+id/card_sinonim"
+                app:layout_constraintWidth_percent="0.47">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="6dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -133,24 +140,25 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_chatglobal"
-                android:layout_width="150dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 app:cardCornerRadius="@dimen/activity_vertical_margin"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_antonim">
+                app:layout_constraintTop_toBottomOf="@+id/btn_antonim"
+                app:layout_constraintWidth_percent="0.5">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/logo_globalchat" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_chatglobal"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -159,11 +167,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/card_chatglobal"
                 app:layout_constraintStart_toStartOf="@+id/card_chatglobal"
-                app:layout_constraintTop_toBottomOf="@+id/card_chatglobal">
+                app:layout_constraintTop_toBottomOf="@+id/card_chatglobal"
+                app:layout_constraintWidth_percent="0.47">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="6dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -180,24 +190,25 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_quiz"
-                android:layout_width="150dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 app:cardCornerRadius="@dimen/activity_vertical_margin"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_sinonim">
+                app:layout_constraintTop_toBottomOf="@id/btn_sinonim"
+                app:layout_constraintWidth_percent="0.5">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/logo_soal" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_quiz"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -206,11 +217,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/card_quiz"
                 app:layout_constraintStart_toStartOf="@+id/card_quiz"
-                app:layout_constraintTop_toBottomOf="@+id/card_quiz">
+                app:layout_constraintTop_toBottomOf="@+id/card_quiz"
+                app:layout_constraintWidth_percent="0.47">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="6dp">
 
                     <TextView
                         android:layout_width="match_parent"
