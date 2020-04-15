@@ -22,36 +22,48 @@
         android:scrollbars="none"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
-        app:layout_constraintBottom_toTopOf="@+id/inp_chat" />
+        app:layout_constraintBottom_toTopOf="@+id/parent_inpChat" />
 
-    <EditText
-        android:id="@+id/inp_chat"
-        android:layout_width="285dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/ic_edittext_style"
-        android:elevation="3dp"
-        android:hint="@string/ketikdisini"
-        android:maxLength="70"
-        android:maxLines="2"
-        android:inputType="text"
-
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/parent_inpChat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.87">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/inp_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="@string/ketikdisini"
+                android:inputType="text"
+                android:maxLength="70"
+                android:maxLines="2"
+                android:padding="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
 
     <ImageButton
         android:id="@+id/btn_send"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
         android:background="@drawable/ic_btnsend_style"
         android:paddingStart="2dp"
         android:paddingBottom="3dp"
         android:src="@drawable/ic_send_white_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/inp_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/parent_inpChat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/inp_chat" />
+        app:layout_constraintTop_toTopOf="@+id/parent_inpChat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
