@@ -12,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -35,6 +36,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -173,4 +175,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.i("keluar", "keluar nie");
+        super.onDestroy();
+    }
 }

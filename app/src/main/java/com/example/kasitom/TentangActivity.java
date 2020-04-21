@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class TentangActivity extends AppCompatActivity {
+    private TextView tv_Version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +17,10 @@ public class TentangActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.menu_tentang);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tv_Version = findViewById(R.id.tv_version);
+
+        tv_Version.setText("v "+BuildConfig.VERSION_NAME);
     }
 
     @Override

@@ -11,6 +11,7 @@
         android:roundIcon="@drawable/icon_kasitom"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".quiz.ChangeLevelActivity"></activity>
         <activity android:name=".antonimSinonim.SinonimActivity" />
         <activity android:name=".antonimSinonim.AntonimActivity" />
         <activity android:name=".quiz.ScoreboardActivity" />

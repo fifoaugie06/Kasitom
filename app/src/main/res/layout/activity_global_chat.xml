@@ -22,7 +22,8 @@
         android:scrollbars="none"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
-        app:layout_constraintBottom_toTopOf="@+id/parent_inpChat" />
+        app:layout_constraintBottom_toTopOf="@+id/parent_inpChat"
+        tools:listitem="@layout/item_in_message"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/parent_inpChat"
