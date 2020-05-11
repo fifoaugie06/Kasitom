@@ -60,11 +60,13 @@ public class QuizActivity extends AppCompatActivity {
     private DecimalFormat decim = new DecimalFormat("###.##");
     private ArrayList<dataQuiz> daftarQuiz;
     private Dialog dialog;
+    private String change_Level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
 
         initView();
         countQuestionData(); //Count max data quiz Firebase
@@ -73,7 +75,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void countQuestionData() {
-        database.child("Quiz").addListenerForSingleValueEvent(new ValueEventListener() {
+        database.child("Quiz").child(change_Level).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 countQuestion = dataSnapshot.getChildrenCount(); // cari maks soal
@@ -544,6 +546,8 @@ public class QuizActivity extends AppCompatActivity {
                 .into(tv_Photo);
         tv_nama.setText(googleSignInAccount.getDisplayName());
         tv_email.setText(googleSignInAccount.getEmail());
+
+        change_Level = getIntent().getStringExtra("change_level");
     }
 
     @Override
